@@ -1,6 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page import="ru.job4j.dream.store.Store" %>
-<%@ page import="ru.job4j.dream.model.Post" %>
 <%@ page import="ru.job4j.dream.model.Candidate" %>
 <!doctype html>
 <html lang="en">
@@ -24,7 +23,7 @@
 <body>
 <%
     String id = request.getParameter("id");
-    Candidate can = new Candidate(0, "");
+    Candidate can = new Candidate(0, "", "");
     if (id != null) {
         can = Store.instOf().findByCandidateId(Integer.parseInt(id));
     }
