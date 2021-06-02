@@ -15,7 +15,6 @@ public class CandidateServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setAttribute("candidates", Store.instOf().findAllCandidates());
         req.getRequestDispatcher("candidates.jsp").forward(req, resp);
-        Store.instOf().findAllCandidates().stream().map(Candidate::toString).forEach(System.out::println);
     }
 
     @Override
