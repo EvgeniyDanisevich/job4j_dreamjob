@@ -24,9 +24,9 @@ public class Store {
         posts.put(1, new Post(1, "Junior Java Job", "Vacancies for Junior"));
         posts.put(2, new Post(2, "Middle Java Job", "Vacancies for Middle"));
         posts.put(3, new Post(3, "Senior Java Job", "Vacancies for Senior"));
-        candidates.put(1, new Candidate(1, "Junior Java", "1.png"));
-        candidates.put(2, new Candidate(2, "Middle Java", "2.png"));
-        candidates.put(3, new Candidate(3, "Senior Java", "3.png"));
+        candidates.put(1, new Candidate(1, "Junior Java", "1"));
+        candidates.put(2, new Candidate(2, "Middle Java", "2"));
+        candidates.put(3, new Candidate(3, "Senior Java", "3"));
     }
 
     public static Store instOf() {
@@ -55,8 +55,13 @@ public class Store {
     public void save(Candidate candidate) {
         if (candidate.getId() == 0) {
             candidate.setId(CANDIDATE_ID.incrementAndGet());
+            candidate.setPhoto(String.valueOf(candidate.getId()));
         }
         candidates.put(candidate.getId(), candidate);
+    }
+
+    public void removeCandidateById(int id) {
+        candidates.remove(id);
     }
 
     public Candidate findByCandidateId(int id) {

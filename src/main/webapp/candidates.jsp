@@ -20,8 +20,23 @@
     <title>Работа мечты</title>
 </head>
 <body>
-<div class="container pt-3">
-
+<div class="container">
+    <div class="row">
+        <ul class="nav">
+            <li class="nav-item">
+                <a class="nav-link" href="<%=request.getContextPath()%>/posts.do">Вакансии</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="<%=request.getContextPath()%>/candidates.do">Кандидаты</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="<%=request.getContextPath()%>/post/edit.jsp">Добавить вакансию</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="<%=request.getContextPath()%>/candidate/edit.jsp">Добавить кандидата</a>
+            </li>
+        </ul>
+    </div>
     <div class="row">
         <div class="card" style="width: 100%">
             <div class="card-header">
@@ -43,11 +58,12 @@
                                     <i class="fa fa-edit mr-3"></i>
                                 </a>
                                 <c:out value="${candidate.name}"/>
+                                <a href="<c:url value='/candidate-remove?id=${candidate.id}'/>">Удалить</a>
                             </td>
                             <td>
-                                <img src="<c:url value='/photo-download?name=${candidate.photo}'/>" width="100px" height="100px"/>
+                                <img src="<c:url value='/photo-download?photo=${candidate.photo}'/>" width="100px" height="100px"/>
                                 <a href="<c:url value='/PhotoUpload.jsp?id=${candidate.id}'/>">Добавить</a>
-                                <a href="<c:url value='/PhotoUpload.jsp?id=${candidate.id}'/>">Удалить</a>
+                                <a href="<c:url value='/photo-remove?id=${candidate.id}'/>">Удалить</a>
                             </td>
                         </tr>
                     </c:forEach>

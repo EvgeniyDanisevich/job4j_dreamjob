@@ -15,16 +15,16 @@ public class CandidateServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setAttribute("candidates", Store.instOf().findAllCandidates());
         req.getRequestDispatcher("candidates.jsp").forward(req, resp);
+        Store.instOf().findAllCandidates().stream().map(Candidate::toString).forEach(System.out::println);
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         req.setCharacterEncoding("UTF-8");
         Store.instOf().save(
                 new Candidate(
                         Integer.parseInt(req.getParameter("id")),
-                        req.getParameter("name"),
-                        req.getParameter("id") + ".png"
+                        req.getParameter("name")
                 )
         );
         resp.sendRedirect(req.getContextPath() + "/candidates.do");

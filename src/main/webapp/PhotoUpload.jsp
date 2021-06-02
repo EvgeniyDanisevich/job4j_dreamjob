@@ -23,17 +23,12 @@
 
 <div class="container">
     <table class="table">
-        <thead>
-        <tr>
-            <th>URL</th>
-        </tr>
-        </thead>
     </table>
-    <h2>Upload image</h2>
-    <form method="post" enctype="multipart/form-data" action="<c:url value="/photo-upload?id=${id}" />">
-        Choose a file: <input type="file" name="file"/>
+    <h2>Загрузка фото</h2>
+    <form method="post" enctype="multipart/form-data" action="<c:url value='/photo-upload?id=${param.id}'/>">
+        Выберите файл: <input type="file" name="file"/>
         <br/>
-        <input type="submit" value="Upload"/>
+        <input type="submit" value="Загрузить"/>
     </form>
 </div>
 
