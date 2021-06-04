@@ -61,7 +61,7 @@
                                 <a href="<c:url value='/candidate-remove?id=${candidate.id}'/>">Удалить</a>
                             </td>
                             <td>
-                                <img src="<c:url value='/photo-download?photo=${candidate.photo}'/>" width="100px" height="100px"/>
+                                <img src="<c:url value='/photo-download?photo=${candidate.id}'/>" width="100px" height="100px"/>
                                 <a href="<c:url value='/PhotoUpload.jsp?id=${candidate.id}'/>">Добавить</a>
                                 <a href="<c:url value='/photo-remove?id=${candidate.id}'/>">Удалить</a>
                             </td>

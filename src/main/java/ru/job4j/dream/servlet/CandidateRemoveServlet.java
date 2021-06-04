@@ -1,6 +1,6 @@
 package ru.job4j.dream.servlet;
 
-import ru.job4j.dream.store.MemStore;
+import ru.job4j.dream.store.PsqlCandidateStore;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -14,7 +14,7 @@ public class CandidateRemoveServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         req.setCharacterEncoding("UTF-8");
         String id = req.getParameter("id");
-        MemStore.instOf().removeCandidateById(Integer.parseInt(id));
+        PsqlCandidateStore.instOf().delete(Integer.parseInt(id));
         for (File file : Objects.requireNonNull(new File("c:\\images\\").listFiles())) {
             if (file.getName().substring(0, file.getName().lastIndexOf(".")).equals(id)) {
                 file.delete();

@@ -16,6 +16,7 @@ public class Candidate {
     public Candidate(int id, String name) {
         this.id = id;
         this.name = name;
+        this.photo = String.valueOf(id);
     }
 
     public Candidate(String name, String photo) {

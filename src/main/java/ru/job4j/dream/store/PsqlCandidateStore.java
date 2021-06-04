@@ -58,12 +58,11 @@ public class PsqlCandidateStore implements Store<Candidate> {
         try (Connection cn = pool.getConnection();
              PreparedStatement ps =
                      cn.prepareStatement(
-                             "INSERT INTO candidate(name, photo) VALUES (?, ?)",
+                             "INSERT INTO candidate(name) VALUES (?)",
                              PreparedStatement.RETURN_GENERATED_KEYS
                      )
         ) {
             ps.setString(1, candidate.getName());
-            ps.setString(2, candidate.getPhoto());
             ps.execute();
             try (ResultSet id = ps.getGeneratedKeys()) {
                 if (id.next()) {
@@ -78,11 +77,10 @@ public class PsqlCandidateStore implements Store<Candidate> {
     private void update(Candidate candidate) {
         try (Connection cn = pool.getConnection();
              PreparedStatement ps = cn.prepareStatement(
-                     "UPDATE candidate SET name=?, photo=? WHERE id=?;",
+                     "UPDATE candidate SET name=? WHERE id=?;",
                      PreparedStatement.RETURN_GENERATED_KEYS)) {
             ps.setString(1, candidate.getName());
-            ps.setString(2, candidate.getPhoto());
-            ps.setInt(3, candidate.getId());
+            ps.setInt(2, candidate.getId());
             ps.execute();
         } catch (Exception e) {
             e.printStackTrace();
