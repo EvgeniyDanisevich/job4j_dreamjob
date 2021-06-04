@@ -29,12 +29,14 @@
             <li class="nav-item">
                 <a class="nav-link" href="<%=request.getContextPath()%>/candidates.do">Кандидаты</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="<%=request.getContextPath()%>/post/edit.jsp">Добавить вакансию</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="<%=request.getContextPath()%>/candidate/edit.jsp">Добавить кандидата</a>
-            </li>
+            <c:if test="${user.name != null}">
+                <li class="nav-item">
+                    <a class="nav-link" href="<%=request.getContextPath()%>/post/edit.jsp">Добавить вакансию</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<%=request.getContextPath()%>/candidate/edit.jsp">Добавить кандидата</a>
+                </li>
+            </c:if>
             <c:if test="${user.name == null}">
                 <li class="nav-item">
                     <a class="nav-link" href="<%=request.getContextPath()%>/login.jsp">Войти</a>
