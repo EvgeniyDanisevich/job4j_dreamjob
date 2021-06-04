@@ -18,6 +18,11 @@ public class Candidate {
         this.name = name;
     }
 
+    public Candidate(String name, String photo) {
+        this.name = name;
+        this.photo = photo;
+    }
+
     public int getId() {
         return id;
     }

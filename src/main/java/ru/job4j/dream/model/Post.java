@@ -17,6 +17,12 @@ public class Post {
         this.created = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss").format(Calendar.getInstance().getTime());
     }
 
+    public Post(String name, String description) {
+        this.name = name;
+        this.description = description;
+        this.created = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss").format(Calendar.getInstance().getTime());
+    }
+
     public int getId() {
         return id;
     }
@@ -64,5 +70,14 @@ public class Post {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return "Post{"
+                + "id=" + id
+                + ", name='" + name + '\''
+                + ", description='" + description + '\''
+                + '}';
     }
 }
