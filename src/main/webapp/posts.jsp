@@ -24,6 +24,9 @@
     <div class="row">
         <ul class="nav">
             <li class="nav-item">
+                <a class="nav-link" href="<%=request.getContextPath()%>">Начальная страница</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="<%=request.getContextPath()%>/posts.do">Вакансии</a>
             </li>
             <li class="nav-item">
@@ -39,12 +42,15 @@
             </c:if>
             <c:if test="${user.name == null}">
                 <li class="nav-item">
+                    <a class="nav-link" href="<%=request.getContextPath()%>/reg.jsp">Регистрация</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="<%=request.getContextPath()%>/login.jsp">Войти</a>
                 </li>
             </c:if>
             <c:if test="${user.name != null}">
                 <li class="nav-item">
-                    <a class="nav-link" href="<%=request.getContextPath()%>/login.jsp"> <c:out value="${user.name}"/> | Выйти</a>
+                    <a class="nav-link" href="<%=request.getContextPath()%>/auth.do"> <c:out value="${user.name}"/> | Выйти</a>
                 </li>
             </c:if>
         </ul>

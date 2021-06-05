@@ -24,6 +24,9 @@
     <div class="row">
         <ul class="nav">
             <li class="nav-item">
+                <a class="nav-link" href="<%=request.getContextPath()%>">Начальная страница</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="<%=request.getContextPath()%>/posts.do">Вакансии</a>
             </li>
             <li class="nav-item">
@@ -39,12 +42,15 @@
             </c:if>
             <c:if test="${user.name == null}">
                 <li class="nav-item">
+                    <a class="nav-link" href="<%=request.getContextPath()%>/reg.jsp">Регистрация</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="<%=request.getContextPath()%>/login.jsp">Войти</a>
                 </li>
             </c:if>
             <c:if test="${user.name != null}">
                 <li class="nav-item">
-                    <a class="nav-link" href="<%=request.getContextPath()%>/login.jsp"> <c:out value="${user.name}"/> | Выйти</a>
+                    <a class="nav-link" href="<%=request.getContextPath()%>/auth.do"> <c:out value="${user.name}"/> | Выйти</a>
                 </li>
             </c:if>
         </ul>
@@ -69,13 +75,19 @@
                                 <a href='<c:url value="/candidate/edit.jsp?id=${candidate.id}"/>'>
                                     <i class="fa fa-edit mr-3"></i>
                                 </a>
+                                <a href="<c:url value='/candidate-remove?id=${candidate.id}'/>">
+                                    <i class="fa fa-trash mr-3"></i>
+                                </a>
                                 <c:out value="${candidate.name}"/>
-                                <a href="<c:url value='/candidate-remove?id=${candidate.id}'/>">Удалить</a>
                             </td>
                             <td>
                                 <img src="<c:url value='/photo-download?photo=${candidate.id}'/>" width="100px" height="100px"/>
-                                <a href="<c:url value='/PhotoUpload.jsp?id=${candidate.id}'/>">Добавить</a>
-                                <a href="<c:url value='/photo-remove?id=${candidate.id}'/>">Удалить</a>
+                                <a href="<c:url value='/PhotoUpload.jsp?id=${candidate.id}'/>">
+                                    <i class="fa fa-edit mr-3"></i>
+                                </a>
+                                <a href="<c:url value='/photo-remove?id=${candidate.id}'/>">
+                                    <i class="fa fa-trash mr-3"></i>
+                                </a>
                             </td>
                         </tr>
                     </c:forEach>

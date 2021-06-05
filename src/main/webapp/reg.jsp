@@ -21,54 +21,46 @@
 </head>
 <body>
 <div class="container">
+
     <div class="row">
         <ul class="nav">
             <li class="nav-item">
-                <a class="nav-link" href="<%=request.getContextPath()%>/posts.do">Вакансии</a>
+                <a class="nav-link" href="<%=request.getContextPath()%>">Начальная страница</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="<%=request.getContextPath()%>/candidates.do">Кандидаты</a>
-            </li>
-            <c:if test="${user.name != null}">
-                <li class="nav-item">
-                    <a class="nav-link" href="<%=request.getContextPath()%>/post/edit.jsp">Добавить вакансию</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="<%=request.getContextPath()%>/candidate/edit.jsp">Добавить кандидата</a>
-                </li>
-            </c:if>
             <c:if test="${user.name == null}">
-            <li class="nav-item">
-                <a class="nav-link" href="<%=request.getContextPath()%>/reg.jsp">Регистрация</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="<%=request.getContextPath()%>/login.jsp">Войти</a>
-            </li>
-            </c:if>
-            <c:if test="${user.name != null}">
                 <li class="nav-item">
-                    <a class="nav-link" href="<%=request.getContextPath()%>/auth.do"> <c:out value="${user.name}"/> | Выйти</a>
+                    <a class="nav-link" href="<%=request.getContextPath()%>/login.jsp">Войти</a>
                 </li>
             </c:if>
         </ul>
-    </div>
-    <div class="row">
         <div class="card" style="width: 100%">
             <div class="card-header">
-                Сегодняшние вакансии.
+                Регистрация
             </div>
             <div class="card-body">
-            </div>
-        </div>
-    </div>
-    <div class="row pt-3">
-        <div class="card" style="width: 100%">
-            <div class="card-header">
-                Сегодняшние кандидаты.
-            </div>
-            <div class="card-body">
+                <c:if test="${requestScope.error != null}">
+                    <div class="card-header">
+                        <c:out value="${requestScope.error}"/>
+                    </div>
+                </c:if>
+                <form action="<%=request.getContextPath()%>/reg.do" method="post">
+                    <div class="form-group">
+                        <label>Имя</label>
+                        <input type="text" class="form-control" name="name">
+                    </div>
+                    <div class="form-group">
+                        <label>Почта</label>
+                        <input type="text" class="form-control" name="email">
+                    </div>
+                    <div class="form-group">
+                        <label>Пароль</label>
+                        <input type="text" class="form-control" name="password">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+                </form>
             </div>
         </div>
     </div>
 </div>
 </body>
+</html>
