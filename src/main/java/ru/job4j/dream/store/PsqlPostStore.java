@@ -1,6 +1,8 @@
 package ru.job4j.dream.store;
 
 import org.apache.commons.dbcp2.BasicDataSource;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import ru.job4j.dream.db.ConnectionPool;
 import ru.job4j.dream.model.Post;
 
@@ -12,6 +14,8 @@ import java.util.Collection;
 import java.util.List;
 
 public class PsqlPostStore implements Store<Post> {
+
+    private static final Logger LOG = LogManager.getLogger(PsqlPostStore.class.getName());
 
     private final BasicDataSource pool = new ConnectionPool().getInstance();
 
@@ -40,7 +44,7 @@ public class PsqlPostStore implements Store<Post> {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            LOG.error("Find all exception", e);
         }
         return posts;
     }
@@ -71,7 +75,7 @@ public class PsqlPostStore implements Store<Post> {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            LOG.error("Create exception", e);
         }
     }
 
@@ -85,13 +89,13 @@ public class PsqlPostStore implements Store<Post> {
             ps.setInt(3, post.getId());
             ps.execute();
         } catch (Exception e) {
-            e.printStackTrace();
+            LOG.error("Update exception", e);
         }
     }
 
     @Override
     public Post findById(int id) {
-        Post post = new Post(0, "", "");
+        Post post = null;
         try (Connection cn = pool.getConnection();
              PreparedStatement ps = cn.prepareStatement(
                      "SELECT * FROM post WHERE id=?;",
@@ -108,7 +112,7 @@ public class PsqlPostStore implements Store<Post> {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            LOG.error("Find by id exception", e);
         }
         return post;
     }
@@ -122,7 +126,7 @@ public class PsqlPostStore implements Store<Post> {
             ps.setInt(1, id);
             ps.execute();
         } catch (Exception e) {
-            e.printStackTrace();
+            LOG.error("Delete exception", e);
         }
     }
 }

@@ -1,6 +1,8 @@
 package ru.job4j.dream.store;
 
 import org.apache.commons.dbcp2.BasicDataSource;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import ru.job4j.dream.db.ConnectionPool;
 import ru.job4j.dream.model.Candidate;
 
@@ -12,6 +14,8 @@ import java.util.Collection;
 import java.util.List;
 
 public class PsqlCandidateStore implements Store<Candidate> {
+
+    private static final Logger LOG = LogManager.getLogger(PsqlCandidateStore.class.getName());
 
     private final BasicDataSource pool = new ConnectionPool().getInstance();
 
@@ -40,7 +44,7 @@ public class PsqlCandidateStore implements Store<Candidate> {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            LOG.error("Find all exception", e);
         }
         return candidates;
     }
@@ -70,7 +74,7 @@ public class PsqlCandidateStore implements Store<Candidate> {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            LOG.error("Create exception", e);
         }
     }
 
@@ -83,13 +87,13 @@ public class PsqlCandidateStore implements Store<Candidate> {
             ps.setInt(2, candidate.getId());
             ps.execute();
         } catch (Exception e) {
-            e.printStackTrace();
+            LOG.error("Update exception", e);
         }
     }
 
     @Override
     public Candidate findById(int id) {
-        Candidate candidate = new Candidate(0, "", "");
+        Candidate candidate = null;
         try (Connection cn = pool.getConnection();
              PreparedStatement ps = cn.prepareStatement(
                      "SELECT * FROM candidate WHERE id=?;",
@@ -106,7 +110,7 @@ public class PsqlCandidateStore implements Store<Candidate> {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            LOG.error("Find by id exception", e);
         }
         return candidate;
     }
@@ -120,7 +124,7 @@ public class PsqlCandidateStore implements Store<Candidate> {
             ps.setInt(1, id);
             ps.execute();
         } catch (Exception e) {
-            e.printStackTrace();
+            LOG.error("Delete exception", e);
         }
     }
 }
