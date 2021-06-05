@@ -3,11 +3,21 @@ package ru.job4j.dream.store;
 import java.util.Collection;
 
 public interface Store<T> {
-    Collection<T> findAll();
+    default Collection<T> findAll() {
+        return null;
+    }
 
-    void save(T t);
+    default void save(T t) {
+    }
 
-    T findById(int id);
+    default T findById(int id) {
+        return null;
+    }
 
-    void delete(int id);
+    default void delete(int id) {
+    }
+
+    default T findByEmail(String email) {
+        return null;
+    }
 }
