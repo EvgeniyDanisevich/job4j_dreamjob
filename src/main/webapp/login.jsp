@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <!doctype html>
 <html lang="en">
@@ -26,6 +27,11 @@
             <div class="card-header">
                 Авторизация
             </div>
+            <c:if test="${requestScope.error != null}">
+                <div class="card-header">
+                    <c:out value="${requestScope.error}"/>
+                </div>
+            </c:if>
             <div class="card-body">
                 <form action="<%=request.getContextPath()%>/auth.do" method="post">
                     <div class="form-group">

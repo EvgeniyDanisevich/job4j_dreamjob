@@ -1,6 +1,8 @@
 package ru.job4j.dream.servlet;
 
 import ru.job4j.dream.model.User;
+import ru.job4j.dream.store.Store;
+import ru.job4j.dream.store.UserStore;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -14,16 +16,25 @@ public class AuthServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String email = req.getParameter("email");
         String password = req.getParameter("password");
-        if ("root@local".equals(email) && "root".equals(password)) {
+        Store<User> userStore = UserStore.instOf();
+        User findUser = userStore.findByEmail(email);
+        if (findUser == null) {
+            req.setAttribute("error", "Пользователя с таким email не существует");
+            req.getRequestDispatcher("reg.jsp").forward(req, resp);
+        } else if (findUser.getEmail().equals(email) && findUser.getPassword().equals(password)) {
             HttpSession sc = req.getSession();
-            User admin = new User();
-            admin.setName("Admin");
-            admin.setEmail(email);
-            sc.setAttribute("user", admin);
+            sc.setAttribute("user", findUser);
             resp.sendRedirect(req.getContextPath() + "/posts.do");
         } else {
             req.setAttribute("error", "Не верный email или пароль");
             req.getRequestDispatcher("login.jsp").forward(req, resp);
         }
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        HttpSession sc = req.getSession();
+        sc.setAttribute("user", null);
+        resp.sendRedirect(req.getContextPath() + "/posts.do");
     }
 }
