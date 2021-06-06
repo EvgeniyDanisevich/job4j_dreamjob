@@ -21,7 +21,7 @@ public class AuthServlet extends HttpServlet {
         if (findUser == null) {
             req.setAttribute("error", "Пользователя с таким email не существует");
             req.getRequestDispatcher("reg.jsp").forward(req, resp);
-        } else if (findUser.getEmail().equals(email) && findUser.getPassword().equals(password)) {
+        } else if (findUser.getPassword().equals(password)) {
             HttpSession sc = req.getSession();
             sc.setAttribute("user", findUser);
             resp.sendRedirect(req.getContextPath() + "/posts.do");
