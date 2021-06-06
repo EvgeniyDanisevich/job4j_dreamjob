@@ -13,7 +13,7 @@
             let surName = $('#surname').val();
             let sex = $('#inputSex').val();
             let description = $('#description').val();
-            if (name === '' || surName === '' || sex !== 'Мужской' || sex !== 'Женский' || description === '') {
+            if (name === '' || surName === '' || sex === 'Выбрать...' || description === '') {
                 alert('Заполните все поля');
             }
         }
@@ -68,20 +68,6 @@
             </div>
         </div>
     </form>
-</div>
-
-<div class="container">
-    <h2>Таблица</h2>
-    <table class="table">
-        <thead>
-        <tr>
-            <th>Имя</th>
-            <th>Фамилия</th>
-            <th>Пол</th>
-            <th>Описание</th>
-        </tr>
-        </thead>
-    </table>
 </div>
 </body>
 </html>
