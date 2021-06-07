@@ -52,6 +52,10 @@
     <servlet-name>CityServlet</servlet-name>
     <servlet-class>ru.job4j.dream.servlet.CityServlet</servlet-class>
   </servlet>
+  <filter>
+    <filter-name>CORSFilter</filter-name>
+    <filter-class>ru.job4j.dream.filter.CORSFilter</filter-class>
+  </filter>
 
   <servlet-mapping>
     <servlet-name>PostServlet</servlet-name>
@@ -101,4 +105,8 @@
     <servlet-name>CityServlet</servlet-name>
     <url-pattern>/city</url-pattern>
   </servlet-mapping>
+  <filter-mapping>
+    <filter-name>CORSFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
 </web-app>
