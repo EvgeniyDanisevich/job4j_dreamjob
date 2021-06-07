@@ -16,3 +16,11 @@ CREATE TABLE users (
     email TEXT not null unique,
     password TEXT
 );
+
+CREATE TABLE city (
+    id SERIAL PRIMARY KEY,
+    name TEXT
+);
+
+insert into city(name) values ('Moscow');
+insert into city(name) values ('Spb');

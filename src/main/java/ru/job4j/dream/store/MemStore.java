@@ -24,9 +24,9 @@ public class MemStore {
         posts.put(1, new Post(1, "Junior Java Job", "Vacancies for Junior"));
         posts.put(2, new Post(2, "Middle Java Job", "Vacancies for Middle"));
         posts.put(3, new Post(3, "Senior Java Job", "Vacancies for Senior"));
-        candidates.put(1, new Candidate(1, "Junior Java", "1"));
-        candidates.put(2, new Candidate(2, "Middle Java", "2"));
-        candidates.put(3, new Candidate(3, "Senior Java", "3"));
+        candidates.put(1, new Candidate(1, "Junior Java", "1", 0));
+        candidates.put(2, new Candidate(2, "Middle Java", "2", 0));
+        candidates.put(3, new Candidate(3, "Senior Java", "3", 0));
     }
 
     public static MemStore instOf() {

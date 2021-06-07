@@ -38,7 +38,8 @@ public class PsqlCandidateStore implements Store<Candidate> {
                     candidates.add(new Candidate(
                                     it.getInt("id"),
                                     it.getString("name"),
-                                    it.getString("photo")
+                                    it.getString("photo"),
+                                    it.getInt("city_id")
                             )
                     );
                 }
@@ -105,7 +106,8 @@ public class PsqlCandidateStore implements Store<Candidate> {
                     candidate = new Candidate(
                             rs.getInt("id"),
                             rs.getString("name"),
-                            rs.getString("photo")
+                            rs.getString("photo"),
+                            rs.getInt("city_id")
                     );
                 }
             }
